@@ -24,11 +24,19 @@ function App() {
 		])
 	};
 
+	const removeItem = item => {
+		console.log({removeItem})
+		setCart([
+			...cart,
+			item
+		])
+	}
+
 	return (
 		<div className="App">
 			<ProductContext.Provider value={{products, addItem}}>
-				<CartContext.Provider value={cart}>
-					<Navigation cart={cart} />
+				<CartContext.Provider value={{cart, removeItem}}>
+					<Navigation />
 
 					{/* Routes */}
 					<Route exact path="/">
@@ -36,8 +44,9 @@ function App() {
 					</Route>
 
 					<Route path="/cart">
-						<ShoppingCart cart={cart} />
+						<ShoppingCart />
 					</Route>
+
 				</CartContext.Provider>
 			</ProductContext.Provider>
 		</div>
